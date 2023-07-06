@@ -7,8 +7,30 @@ html, body {
 
 body {
     font-family: sans-serif;
-    background-color: gray;
+    background-color: lightgray;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+/*  Player */
+.player {
+    max-width: 768px;
+    min-width: 320px;
+    background-image: linear-gradient(black, gray);
+    border-radius: 1rem;
+    padding: 2rem;
+    color: white;
+    box-shadow: 2px 2px 3px black;
+}
+
+
+/* Title */
+
+/* Cover */
+
+/* Progress */
+
+/* Controls */
+
+/* Songs */
