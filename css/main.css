@@ -26,11 +26,71 @@ body {
 
 
 /* Title */
+.title {
+    margin-top: 0;
+    text-align: center;
+}
 
 /* Cover */
+.cover {
+    width: 128px;
+    height: auto;
+    border-radius: .3rem;
+    display: block;
+    margin: 0 auto 1rem auto;
+}
 
 /* Progress */
+.progress-container {
+    height: .4rem;
+    background-color: lightgray;
+    margin-bottom: 1rem;
+}
+
+.progress {
+    background-color: goldenrod;
+    width: 45%;
+    height: 100%;
+}
 
 /* Controls */
+.controls {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 1rem;
+}
+
+.controls button {
+    background-color: transparent;
+    border: none;
+}
+
+.controls i {
+    font-size: 1.7rem;
+    color: white;
+}
 
 /* Songs */
+.songs {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.songs li {
+    margin-bottom: 1.5rem;
+}
+
+.songs a {
+    color: white;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
