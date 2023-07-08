@@ -3,25 +3,26 @@ const songList = [
     {
         title: "Reptilia",
         artist: "The Strokes",
-        file: "acousticbreeze.mp3",
+        file: "thestrokes_reptilia.mp3",
         cover: "1.jpeg"
     },
     {
         title: "Shadow Lady",
         artist: "Portwave",
-        file: "anewbeginning.mp3",
+        file: "shadowlady_portwave.mp3",
         cover: "2.jpeg"
     },
     {
         title: "Past Lives",
         artist: "Sapientdream",
-        file: "creativeminds.mp3",
+        file: "pastlives_sapientdream.mp3",
         cover: "3.jpeg"
     },
 ]
 
 //  Capturar elementos del DOM para trabajar con JS
 const songs = document.getElementById("songs")
+const audio = document.getElementById("audio")
 
 // Cargar canciones y mostrar el listado
 function loadSongs() {  
@@ -46,6 +47,8 @@ function loadSongs() {
 
 // Cargar canción seleccionada
 function loadSong(songIndex) {
+    audio.src = "./audio/" + songList[songIndex].file
+    audio.play()
     console.log(songIndex)
 }
 
