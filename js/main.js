@@ -25,8 +25,23 @@ let actualSong = null
 //  Capturar elementos del DOM para trabajar con JS
 const songs = document.getElementById("songs")
 const audio = document.getElementById("audio")
+
 const cover = document.getElementById("cover")
 const title = document.getElementById("title")
+
+const play = document.getElementById("play")
+const prev = document.getElementById("prev")
+const next = document.getElementById("next")
+
+// Escuchar clicks en el botón play
+play.addEventListener("click", () =>  {
+    if (audio.paused) {
+        playSong()
+    } else {
+        pauseSong()
+    }
+})
+
 
 // Cargar canciones y mostrar el listado
 function loadSongs() {  
@@ -55,7 +70,7 @@ function loadSong(songIndex) {
         changeActiveClass(actualSong, songIndex)
         actualSong = songIndex
         audio.src = "./audio/" + songList[songIndex].file
-        audio.play()
+        playSong()
         changeCover(songIndex)
         changeTitle(songIndex)
         // console.log(songIndex)
@@ -63,10 +78,36 @@ function loadSong(songIndex) {
     
 }
 
+//Actualizar controles
+function updateControls() {
+    if (audio.paused) {
+        play.classList.remove("fa-pause")
+        play.classList.add("fa-play")
+    } else {
+        play.classList.add("fa-pause")
+        play.classList.remove("fa-play")
+    }
+}
+
+// Reproducir canción
+function playSong() {
+    audio.play()
+    updateControls()
+
+}
+
+
+// Pausar canción
+function pauseSong() {
+    audio.pause()
+    updateControls()
+}
+
+
 // Cambiar clase activa
 function changeActiveClass(lastIndex, newIndex) {
     const links = document.querySelectorAll("a")
-    if (lastIndex != null) {
+    if (lastIndex !== null) {
         links[lastIndex].classList.remove("active")
     }
     links[newIndex].classList.add("active")
