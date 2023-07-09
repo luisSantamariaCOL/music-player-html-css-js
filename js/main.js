@@ -33,7 +33,14 @@ const play = document.getElementById("play")
 const prev = document.getElementById("prev")
 const next = document.getElementById("next")
 
-// Escuchar clicks en el botón play
+const progress = document.getElementById("progress")
+
+// Escuchar el elemento audio
+audio.addEventListener("timeupdate", updateProgress)
+
+// Escuchar clicks en los controles
+prev.addEventListener("click", () => prevSong())
+
 play.addEventListener("click", () =>  {
     if (audio.paused) {
         playSong()
@@ -42,6 +49,7 @@ play.addEventListener("click", () =>  {
     }
 })
 
+next.addEventListener("click", () => nextSong())
 
 // Cargar canciones y mostrar el listado
 function loadSongs() {  
@@ -76,6 +84,18 @@ function loadSong(songIndex) {
         // console.log(songIndex)
     }
     
+}
+
+// Actualizar barra de progreso de la canción
+function updateProgress(event) {
+    // Total y el actual
+    const {duration, currentTime} = event.srcElement
+    const percent = (currentTime / duration) * 100
+    if (percent !== NaN) {
+        progress.style.width = percent + "%"
+    } else {
+        progress.style.width = 0
+    }
 }
 
 //Actualizar controles
@@ -124,6 +144,24 @@ function changeCover(songIndex) {
 // Cambiar el titulo de la canción
 function changeTitle(songIndex) {
     title.innerText = songList[songIndex].title
+}
+
+// Anterior canción
+function prevSong() {
+    if (actualSong > 0) {
+        loadSong(actualSong - 1)
+    } else {
+        loadSong(songList.length - 1)
+    }
+}
+
+// Siguiente canción
+function nextSong() {
+    if (actualSong < songList.length -1) {
+        loadSong(actualSong+1)
+    } else {
+        loadSong(0)
+    }
 }
 
 // GO!
