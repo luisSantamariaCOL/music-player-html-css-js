@@ -91,8 +91,10 @@ function updateControls() {
 
 // Reproducir canción
 function playSong() {
-    audio.play()
-    updateControls()
+    if (actualSong !== null) {
+        audio.play()
+        updateControls()
+    }
 
 }
 
