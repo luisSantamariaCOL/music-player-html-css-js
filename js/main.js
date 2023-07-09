@@ -4,25 +4,29 @@ const songList = [
         title: "Reptilia",
         artist: "The Strokes",
         file: "thestrokes_reptilia.mp3",
-        cover: "1.jpeg"
+        cover: "reptilia.jpg"
     },
     {
         title: "Shadow Lady",
         artist: "Portwave",
         file: "shadowlady_portwave.mp3",
-        cover: "2.jpeg"
+        cover: "shadow_lady.jpg"
     },
     {
         title: "Past Lives",
         artist: "Sapientdream",
         file: "pastlives_sapientdream.mp3",
-        cover: "3.jpeg"
+        cover: "past_lives.jpg"
     },
 ]
+
+let actualSong = null
 
 //  Capturar elementos del DOM para trabajar con JS
 const songs = document.getElementById("songs")
 const audio = document.getElementById("audio")
+const cover = document.getElementById("cover")
+const title = document.getElementById("title")
 
 // Cargar canciones y mostrar el listado
 function loadSongs() {  
@@ -47,12 +51,37 @@ function loadSongs() {
 
 // Cargar canción seleccionada
 function loadSong(songIndex) {
-    audio.src = "./audio/" + songList[songIndex].file
-    audio.play()
-    console.log(songIndex)
+    if (songIndex !== actualSong) {
+        changeActiveClass(actualSong, songIndex)
+        actualSong = songIndex
+        audio.src = "./audio/" + songList[songIndex].file
+        audio.play()
+        changeCover(songIndex)
+        changeTitle(songIndex)
+        // console.log(songIndex)
+    }
+    
 }
 
+// Cambiar clase activa
+function changeActiveClass(lastIndex, newIndex) {
+    const links = document.querySelectorAll("a")
+    if (lastIndex != null) {
+        links[lastIndex].classList.remove("active")
+    }
+    links[newIndex].classList.add("active")
+    
+}
 
+// Cambiar el cover de la canción
+function changeCover(songIndex) {
+    cover.src = "./img/" + songList[songIndex].cover
+} 
+
+// Cambiar el titulo de la canción
+function changeTitle(songIndex) {
+    title.innerText = songList[songIndex].title
+}
 
 // GO!
 loadSongs()
