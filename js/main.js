@@ -34,6 +34,10 @@ const prev = document.getElementById("prev")
 const next = document.getElementById("next")
 
 const progress = document.getElementById("progress")
+const progressContainer = document.getElementById("progress-container")
+
+
+progressContainer.addEventListener("click", setProgress)
 
 // Escuchar el elemento audio
 audio.addEventListener("timeupdate", updateProgress)
@@ -96,6 +100,13 @@ function updateProgress(event) {
     } else {
         progress.style.width = 0
     }
+}
+
+function setProgress(event) {
+    const totalWidth = this.offsetWidth
+    const progressWidth = event.offsetX
+    const percent = ( progressWidth / totalWidth ) * audio.duration
+    audio.currentTime = percent
 }
 
 //Actualizar controles
@@ -163,6 +174,9 @@ function nextSong() {
         loadSong(0)
     }
 }
+
+// Lanzar siguiente canción al finalizar la actual
+audio.addEventListener("ended", () => nextSong())
 
 // GO!
 loadSongs()
